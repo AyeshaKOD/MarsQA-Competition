@@ -1,0 +1,21 @@
+{
+  "AddCertifications": [
+    {
+      "CertificateName": "ISTQB Foundation",
+      "CertifiedBody": "ISTQB",
+      "Year": "2021"
+    },
+    {
+      "CertificateName": "Attorney-at-Law",
+      "CertifiedBody": "Law school",
+      "Year": "2012"
+    },
+    {
+      "CertificateName": "ISTQB Advance",
+      "CertifiedBody": "ISTQB",
+      "Year": "2023"
+    }
+
+  ]
+
+}

@@ -1,0 +1,35 @@
+{
+  "Educations": [
+    {
+      
+      "CollegeName": "Open Polytechnic",
+      "Country": "New Zealand",
+      "Title": "B.Tech",
+      "DegreeName": "Bachelor of Information Technology",
+      "YearGraduation": "2016"
+    },
+
+
+    {
+      
+      "CollegeName": "University of Morotuwa",
+      "Country": "Sri Lanka",
+      "Title": "B.Sc",
+      "DegreeName": "Bachelor of Science",
+      "YearGraduation": "2010"
+    },
+
+    {
+     
+      "CollegeName": "University of Monash",
+      "Country": "Australia",
+      "Title": "M.Tech",
+      "DegreeName": "Master of Information Technology",
+      "YearGraduation": "2022"
+    }
+    
+  ]
+
+
+
+}
