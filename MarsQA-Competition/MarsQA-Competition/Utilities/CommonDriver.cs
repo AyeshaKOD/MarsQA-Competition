@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
+using System.Runtime.InteropServices;
 
 namespace MarsQA_Competition.Utilities
 {
@@ -25,13 +26,12 @@ namespace MarsQA_Competition.Utilities
         public void Initialize()
         {
             
-            string reportPath="C:\\IndustryConnect\\MarsQACompetition\\MARSQA-Competition\\MarsQA-Competition\\MarsQA-Competition\\MarsQA-Competition\\Utilities\\report.html";
+
+            string reportPath= "C:\\IndustryConnect\\MarsQACompetition\\MARSQA-Competition\\MarsQA-Competition\\MarsQA-Competition\\MarsQA-Competition\\Utilities\\report.html";
             ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportPath);
             _extent = new ExtentReports();
             _extent.AttachReporter(htmlReporter);
-
             driver = new ChromeDriver();
-
             driver.Manage().Window.Maximize();
         }
 
