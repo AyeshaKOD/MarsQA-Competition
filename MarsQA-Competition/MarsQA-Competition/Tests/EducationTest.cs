@@ -25,43 +25,48 @@ namespace MarsQA_Competition.Tests
         [SetUp]
         public void SetUp()
         {
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            string reportPath = GetReport(); // Get the relative path
+            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportPath + "\\EducationTestReport.html");
 
-            _test.Log(Status.Info, "Log in to MarsQA");
+            extent = new ExtentReports();
+            extent.AttachReporter(htmlReporter);
+            
+
+           
             LogIn logInObject = new LogIn();
             logInObject.LogInSteps();
-            _test.Log(Status.Pass, "Successfully logged in");
+           
 
 
         }
         [Test]
         public void AddEducationTest()
         {
-           
-            _test.Log(Status.Info, "Add education details");
+            test = extent.CreateTest("Add education details").Info("Test started");
+            
             Education educationObject = new Education();
             educationObject.AddEducation();
-            _test.Log(Status.Pass, "Add education test passed");
-
+            
+            test.Log(Status.Pass, "Test passed");
         }
 
         [Test]
         public void EditEducationTest()
         {
-           
-            _test.Log(Status.Info, "Update education details");
+            test = extent.CreateTest("Update education details").Info("Test started");
+            
             Education educationObject = new Education();
             educationObject.EditEducation();
-            _test.Log(Status.Pass, "Update education test passed");
+            test.Log(Status.Pass, "Update education test passed");
         }
         [Test]
         public void DeleteEducationTest()
         {
-            
-            _test.Log(Status.Info, "delete education details");
+            test = extent.CreateTest("delete education details").Info("Test started");
+           
             Education educationObject = new Education();
             educationObject.DeleteEducationRecords();
-            _test.Log(Status.Pass, "Delete education test passed");
+            test.Log(Status.Pass, "Delete education test passed");
         }
 
         [TearDown]

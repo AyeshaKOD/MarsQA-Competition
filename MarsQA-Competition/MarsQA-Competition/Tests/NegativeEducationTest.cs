@@ -1,4 +1,5 @@
 ﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 using MarsQA_Competition.Pages;
 using MarsQA_Competition.Utilities;
 using NUnit.Framework;
@@ -16,30 +17,33 @@ namespace MarsQA_Competition.Tests
         [SetUp]
         public void SetUp()
         {
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            string reportPath = GetReport(); // Get the relative path
+            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportPath + "\\EducationTestReport.html");
 
-            _test.Log(Status.Info, "Log in to MarsQA");
+            extent = new ExtentReports();
+            extent.AttachReporter(htmlReporter);
+
             LogIn logInObject = new LogIn();
             logInObject.LogInSteps();
-            _test.Log(Status.Pass, "Successfully logged in");
+            
         }
         [Test]
         public void NegativeAddEducationTest()
         {
-            _test.Log(Status.Info, "Check whether the same education details can not add twice");
+            test = extent.CreateTest("Add same education details twice").Info("Test started");
             NegativeEducation newNegativeEducation= new NegativeEducation();
             newNegativeEducation.NegativeAddEducation();
-            _test.Log(Status.Pass, "Same education details can not add twice");
+            test.Log(Status.Pass, "Same education details can not add twice");
 
         }
         [Test]
 
         public void MissingEducationDataTest ()
         {
-            _test.Log(Status.Info, "Check whether the education  can be added without without giving required details");
+            test = extent.CreateTest("Add without entering relevant education details").Info("Test started");
             NegativeEducation newNegativeEducation = new NegativeEducation();
             newNegativeEducation.MissingEducationDetails();
-            _test.Log(Status.Pass, "Education  can be added without without giving required details");
+            test.Log(Status.Pass, "Education  can be added without without giving required details");
         }
         [TearDown]
         public void CloseTest()

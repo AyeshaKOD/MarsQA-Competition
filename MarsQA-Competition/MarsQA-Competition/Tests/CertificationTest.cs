@@ -1,4 +1,5 @@
 ﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 using MarsQA_Competition.Pages;
 using MarsQA_Competition.Utilities;
 using NUnit.Framework;
@@ -16,39 +17,41 @@ namespace MarsQA_Competition.Tests
         [SetUp]
         public void SetUp()
         {
-            _test = _extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            string reportPath = GetReport(); // Get the relative path
+            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportPath + "\\EducationTestReport.html");
 
-            _test.Log(Status.Info, "Log in to MarsQA");
+            extent = new ExtentReports();
+            extent.AttachReporter(htmlReporter);
             LogIn logInObject = new LogIn();
             logInObject.LogInSteps();
-            _test.Log(Status.Pass, "Successfully logged in");
+            
         }
         [Test]
         public void AddCertificateTest()
         {
-            _test.Log(Status.Info, "Add certification details");
+            test = extent.CreateTest("Add certification details").Info("Test started");
             Certifications certificationsObject= new Certifications();
             certificationsObject.AddNewCertification();
-            _test.Log(Status.Pass, "Add certificate test passed");
+            test.Log(Status.Pass, "Add certificate test passed");
         }
         [Test]
 
         public void EditCertificationsTest ()
         {
-            _test.Log(Status.Info, "Update certification details");
+            test = extent.CreateTest("Update certification details").Info("Test started");
             Certifications certificationsObject = new Certifications();
             certificationsObject.UpdateCertifications();
-            _test.Log(Status.Pass, "Update certificate test passed");
+            test.Log(Status.Pass, "Update certificate test passed");
 
         }
         [Test]
 
         public void DeleteCertificationsTest ()
         {
-            _test.Log(Status.Info, "Delete certification details");
+            test = extent.CreateTest("Delete certification details").Info("Test started");
             Certifications certificationsObject = new Certifications();
             certificationsObject.DeleteCertifications();
-            _test.Log(Status.Pass, "Delete certificate test passed");
+            test.Log(Status.Pass, "Delete certificate test passed");
         }
         [TearDown]
         public void CloseTest()

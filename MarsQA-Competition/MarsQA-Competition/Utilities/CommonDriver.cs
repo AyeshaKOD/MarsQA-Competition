@@ -15,8 +15,8 @@ namespace MarsQA_Competition.Utilities
     public class CommonDriver
     {
         public static IWebDriver driver;
-        protected ExtentReports _extent;
-        protected ExtentTest _test;
+        protected ExtentReports extent;
+        protected ExtentTest test;
 
 
 
@@ -25,22 +25,27 @@ namespace MarsQA_Competition.Utilities
         [OneTimeSetUp]
         public void Initialize()
         {
-            
 
-            string reportPath= "C:\\IndustryConnect\\MarsQACompetition\\MARSQA-Competition\\MarsQA-Competition\\MarsQA-Competition\\MarsQA-Competition\\Utilities\\report.html";
-            ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(reportPath);
-            _extent = new ExtentReports();
-            _extent.AttachReporter(htmlReporter);
+
+            
+            
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
+        }
+        public static String  GetReport()
+        {
+            string currentDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+            string reportPath = Path.Combine(currentDir, "Utilities");
+            return reportPath;
         }
 
 
         [OneTimeTearDown]
         public void ClosingSteps()
         {
+            
+            extent.Flush();
             driver.Close();
-            _extent.Flush();
         }
     }
 }
